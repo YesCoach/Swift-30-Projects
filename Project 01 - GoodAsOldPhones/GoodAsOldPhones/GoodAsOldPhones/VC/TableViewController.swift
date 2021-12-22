@@ -14,6 +14,13 @@ class TableViewController: UIViewController {
         return tableView
     }()
 
+    let products: [Product] = [
+        Product(name: "1907 Wall Set", cellImageName: "image-cell1", fullImageName: "phone-fullscreen1"),
+        Product(name: "1921 Dial Phone", cellImageName: "image-cell2", fullImageName: "phone-fullscreen2"),
+        Product(name: "1937 Desk Set", cellImageName: "image-cell3", fullImageName: "phone-fullscreen3"),
+        Product(name: "1984 Moto Portable", cellImageName: "iamge-cell4", fullImageName: "phone-fullscreen4")
+    ]
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Products"
@@ -32,7 +39,7 @@ class TableViewController: UIViewController {
 
 extension TableViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return products.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
