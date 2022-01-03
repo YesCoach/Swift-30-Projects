@@ -14,6 +14,7 @@ class TableViewCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.accessoryType = .disclosureIndicator
         setUpLayout()
     }
 
@@ -29,12 +30,20 @@ class TableViewCell: UITableViewCell {
         NSLayoutConstraint.activate([
             productImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             productImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-            productImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 8),
-            productImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3),
+            productImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
+            productImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3)
+            ])
+        NSLayoutConstraint.activate([
             productNameLabel.leadingAnchor.constraint(equalTo: productImageView.trailingAnchor, constant: 8),
-            productNameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 8),
+            productNameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
             productNameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
         ])
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        productNameLabel.text = .none
+        productImageView.image = .none
     }
 
     func configure(product: Product) {
