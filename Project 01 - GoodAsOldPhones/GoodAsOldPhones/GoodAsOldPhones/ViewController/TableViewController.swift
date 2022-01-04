@@ -8,12 +8,10 @@
 import UIKit
 
 class TableViewController: UIViewController {
-
     private let tableView: UITableView = {
         let tableView = UITableView()
         return tableView
     }()
-
     private let products: [Product] = [
         Product(name: "1907 Wall Set", cellImageName: "image-cell1", fullImageName: "phone-fullscreen1"),
         Product(name: "1921 Dial Phone", cellImageName: "image-cell2", fullImageName: "phone-fullscreen2"),
@@ -61,7 +59,10 @@ extension TableViewController: UITableViewDataSource {
 }
 
 extension TableViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        <#code#>
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let product = products[indexPath.row]
+        let detailViewController = DetailViewController()
+        detailViewController.configureWithProduct(product)
+        navigationController?.pushViewController(detailViewController, animated: false)
     }
 }
